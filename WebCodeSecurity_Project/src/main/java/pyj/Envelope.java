@@ -9,7 +9,7 @@ public class Envelope {
 	private KeyPair keyPair;
 	
 	public Envelope() {
-		//생성자에서 비댕치키 생성
+		//생성자에서 비대칭키 생성
 		generateKeyPair();
 	}
 	
