@@ -16,7 +16,7 @@ public class Envelope {
 	public void generateKeyPair() {
 		try {
 			//비대칭키 생성
-			KeyPairGenerator keyPairGenerator = keyPairGenerator.getInstance("RSA");
+			KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
 			keyPairGenerator.initialize(2048);
 			keyPair = keyPairGenerator.generateKeyPair();
 		} catch (NoSuchAlgorithmException e) {
