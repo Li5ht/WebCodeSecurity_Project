@@ -3,24 +3,17 @@ package pyj;
 import java.security.*;
 import java.util.Base64;
 
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+
 public class KeyManager {
-	private KeyPair keyPair;
+	//private KeyPair keyPair;
 
     public KeyManager() {
         // 생성자에서 비밀키 생성
         generateSecretKey();
     }
     
-    public void generateKeyPair() {
-		try {
-			//비대칭키 생성
-			KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
-			keyPairGenerator.initialize(2048);
-			keyPair = keyPairGenerator.generateKeyPair();
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-	}
 
     public void generateSecretKey() {
         try {
