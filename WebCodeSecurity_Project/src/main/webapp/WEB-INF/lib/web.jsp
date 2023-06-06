@@ -3,9 +3,9 @@
 <%@ page import="java.security.*" %>
 <%@ page import="javax.crypto.*" %>
 <%@ page import="java.util.Base64" %>
-<%@ page import="your.package.name.EnvelopeGenerator" %>
-<%@ page import="your.package.name.EnvelopeVerifier" %>
-<%@ page import="your.package.name.KeyManager" %>
+<%@ page import="Envelope.EnvelopeGenerator" %>
+<%@ page import="Envelope.EnvelopeVerifier" %>
+<%@ page import="KeyManager.KeyManager" %>
 
 <%
     // 전자봉투 생성
