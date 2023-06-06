@@ -54,8 +54,45 @@ public class Envelope {
     	System.out.println("생성된 공개키 정보: ");
     	System.out.println("키의 길이(byte): "+ pubByte.length);
     	for (byte bytes : pubByte) {
-    		System.out.print(String.format("%02x", bytes))
+    		System.out.print(String.format("%02x", bytes)+"\t");
     	}
+    	
+    	System.out.println("\n생성된 개인키 정보 : ");
+    	System.out.println("키의 길이(byte): "+ priByte.length);
+    	for (byte bytes : priByte) {
+    		System.out.print(String.format("%02x", bytes)+"\t");
+    	}
+    	
+    	
+    	//3. KeyPair 파이에 저장
+    	Scanner sc = new Scanner(System.in);
+    	System.out.print("공개키를 저장할 파일 이름 : ");
+    	String pubFile = sc.nextLine();
+    	
+    	
+    	try(FileOutputStream out = new FileOutputStream(pubFile)){
+    		try (ObjectOutputStream outStream = new ObjectOutputStream(out)){
+    			outStream.writeObject(pub);
+    		}
+    	}catch (FileNotFoundException e) {
+    		throw new RuntimeException(e);
+    	}catch (IOException e) {
+    		throw new RuntimeException(e);
+    	}
+    	
+    	System.out.print("개인키를 저장할 파일 이름 : ");
+    	String priFile = sc.nextLine();
+    	
+    	try(FileOutputStream out = new FileOutputStream(pubFile)){
+    		try (ObjectOutputStream outStream = new ObjectOutputStream(out)){
+    			outStream.writeObject(pri);
+    		}
+    	}catch (FileNotFoundException e) {
+    	}catch (IOException e) {
+    		throw new RuntimeException(e);
+    	}
+    	
+    	
     	
 		/*chat gpt code 주석처리
 		 * // 문서 생성 String document = "This is a sample document.";
