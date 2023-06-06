@@ -3,6 +3,8 @@ package Envelope;
 import java.security.*;
 import java.util.Base64;
 
+//import javax.servlet.http.HttpServlet;
+
 public class EnvelopeGenerator {
 	private KeyPairGenerator keyPairGenerator;
     

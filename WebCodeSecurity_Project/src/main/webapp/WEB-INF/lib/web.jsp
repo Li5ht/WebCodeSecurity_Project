@@ -12,7 +12,7 @@
     String document = "임의의 문서 내용";
     KeyManager keyManager = new KeyManager();
     EnvelopeGenerator envelopeGenerator = new EnvelopeGenerator();
-    KeyPair keyPair = keyManager.getKeyPair();
+    KeyPair keyPair = keyManager.generateKeyPair();
     String envelope = envelopeGenerator.generateEnvelope(document, keyPair.getPrivate());
 
     // 전자봉투 검증
