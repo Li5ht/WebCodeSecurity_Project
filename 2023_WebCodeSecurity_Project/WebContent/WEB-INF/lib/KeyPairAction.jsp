@@ -32,6 +32,7 @@
     // 개인키 저장
     try (FileOutputStream fos = new FileOutputStream(privateKeyFileName)) {
         byte[] encodedKey = privateKey.getEncoded();
+        
         fos.write(encodedKey);
     } catch (IOException e) {
         throw new RuntimeException("개인키를 저장하는 중에 오류가 발생했습니다.", e);
