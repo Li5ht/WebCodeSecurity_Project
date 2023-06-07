@@ -19,6 +19,7 @@
     KeyPair keyPair = kpg.generateKeyPair();
 
     PublicKey publicKey = keyPair.getPublic();
+    
     PrivateKey privateKey = keyPair.getPrivate();
 
     // 공개키 저장
