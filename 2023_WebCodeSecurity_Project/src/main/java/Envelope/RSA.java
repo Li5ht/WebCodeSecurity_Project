@@ -30,6 +30,15 @@ public class RSA {
         byte[] publicKeyBytes = publicKey.getEncoded();
         byte[] privateKeyBytes = privateKey.getEncoded();
         
+        try (OutputStream output = new FileOutputStream(fileName, false);
+                OutputStreamWriter osw = new OutputStreamWriter(output, "UTF-8")) {
+               byte[] encodedKey = key.getEncoded();
+               String encodedKeyBase64 = Base64.getEncoder().encodeToString(encodedKey);
+               osw.write(encodedKeyBase64);
+           } catch (IOException e) {
+               throw new RuntimeException("키를 저장하는 중에 오류가 발생했습니다.", e);
+           }
+        
         //공개키 저장
         Scanner scanner = new Scanner(System.in);
         
