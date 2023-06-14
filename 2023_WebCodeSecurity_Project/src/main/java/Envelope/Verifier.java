@@ -1,30 +1,29 @@
 package Envelope;
 
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.*;
 import java.util.Base64;
 
 public class Verifier {
-	private String document;
-	private String envelope;
-	private PublicKey publicKey;
+    public boolean verifyRSA(String publicKeyFilePath, String signature, PublicKey publicKey) {
+        try {
+            byte[] signatureBytes = Base64.getDecoder().decode(signature);
 
-	
-    public String getDocument() {return document;}
-	public void setDocument(String document) {this.document = document;}
+            Signature verifier = Signature.getInstance("SHA256withRSA");
+            verifier.initVerify(publicKey);
 
-	public String getEnvelope() {return envelope;}
-	public void setEnvelope(String envelope) {this.envelope = envelope;}
+            Path publicKeyFile = Paths.get(publicKeyFilePath);
+            byte[] publicKeyBytes = Files.readAllBytes(publicKeyFile);
 
-	public PublicKey getPublicKey() {return publicKey;}
-	public void setPublicKey(PublicKey publicKey) {this.publicKey = publicKey;}
-	
-	
-	public boolean verifyRSA(String document, String envelope, PublicKey publicKey) throws NoSuchAlgorithmException, InvalidKeyException, SignatureException {
-	    // 전자봉투 검증
-	    Signature signature = Signature.getInstance("SHA256withRSA");
-	    signature.initVerify(publicKey);
-	    signature.update(document.getBytes());
-	    byte[] envelopeBytes = Base64.getDecoder().decode(envelope);
-	    return signature.verify(envelopeBytes);
-	}
+            verifier.update(publicKeyBytes);
+
+            return verifier.verify(signatureBytes);
+        } catch (NoSuchAlgorithmException | InvalidKeyException | SignatureException | java.io.IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
