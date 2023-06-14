@@ -24,7 +24,7 @@ public class RSA {
         String publicFileName = scanner.nextLine();
         saveKey(publicKey, publicFileName);
 
-        // 공개키 출력해보기
+     // 공개키 출력해보기
         System.out.println("\n생성된 공개키 정보: ");
         byte[] publicKeyBytes = publicKey.getEncoded();
         System.out.println("키의 길이 (bytes): " + publicKeyBytes.length);
@@ -55,16 +55,21 @@ public class RSA {
     private static String bytesToHex(byte[] bytes) {
         StringBuilder sb = new StringBuilder();
         for (byte b : bytes) {
-            sb.append(String.format("%02x", b));
+            sb.append(String.format("%02x ", b));
         }
-        return sb.toString();
+        return sb.toString().trim();
     }
 
     private static void saveKey(Key key, String fileName) throws IOException {
-        byte[] encodedKey = key.getEncoded();
-        try (OutputStream output = new FileOutputStream(fileName)) {
-            output.write(encodedKey);
-        }
+    	 if (fileName == null) {
+             throw new IllegalArgumentException("파일 이름이 유효하지 않습니다.");
+         }
+
+         byte[] encodedKey = key.getEncoded();
+
+         try (OutputStream output = new FileOutputStream(fileName)) {
+             output.write(encodedKey);
+         }
     }
 }
 

@@ -1,6 +1,5 @@
 package Envelope;
 
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -8,8 +7,8 @@ import java.security.*;
 import java.util.Base64;
 
 public class Verifier {
-    public boolean verifyRSA(String publicKeyFilePath, String signature, PublicKey publicKey) {
-        try {
+	public boolean verifyRSA(String publicKeyFilePath, String signature, PublicKey publicKey) {
+		try {
             byte[] signatureBytes = Base64.getDecoder().decode(signature);
 
             Signature verifier = Signature.getInstance("SHA256withRSA");
